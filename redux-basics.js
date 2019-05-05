@@ -1,6 +1,6 @@
 const redux = require('redux');
 const createStore = redux.createStore;
-
+const applyMiddleware = redux.applyMiddleware;
 
 const initialState = {
     counter: 0
@@ -24,8 +24,19 @@ const rootReducer = (state = initialState, action) => {
     return state;
 }
 
+const logger = store => {
+    return next => {
+        return action => {
+            console.log('Middleware Dispatching', action);
+            const result = next(action);
+            console.log('Middleware next state', store.getState());
+            return result;
+        }
+    }
+}
+
 // Store
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 console.log(store.getState());
 
