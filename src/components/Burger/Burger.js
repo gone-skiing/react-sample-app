@@ -5,7 +5,7 @@ import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 import classes from './Burger.module.css';
 
 const burger = (props) =>  {
-    console.log(props);
+    //console.log(props);
 
     let transformed = Object.keys(props.ingredients)
         .map(igKey => {
@@ -20,6 +20,7 @@ const burger = (props) =>  {
     if (transformed.length === 0) {
         transformed = <p>Please start adding ingredients</p>;
     }
+
     return (
         <div className={classes.Burger}>
             <BurgerIngredient type="bread-top"/>
