@@ -28,7 +28,8 @@ const addRemoveIngredient = (state, ingredientName, increment) => {
 
     const updatedState = {
         ingredients: updatedIngredients,
-        totalPrice: newPrice
+        totalPrice: newPrice,
+        building: true,
     };
 
     return updateObject(state, updatedState);
@@ -44,7 +45,8 @@ const setIngredients = (state, action) => {
                 meat: action.ingredients.meat
             },
             totalPrice: 4,
-            error: false
+            error: false,
+            building: false,
         }
     );
 }
