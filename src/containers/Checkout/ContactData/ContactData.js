@@ -9,6 +9,7 @@ import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
+import {checkValidity, updateObject} from "../../../shared/utility";
 
 class ContactData extends Component {
     state = {
@@ -115,18 +116,16 @@ class ContactData extends Component {
     };
 
     inputChangedHandler = (event, inputIdentifier) => {
-        const updatedOrderForm = {
-            ...this.state.orderForm
-        };
 
-        const updatedFormElement = {
-            ...updatedOrderForm[inputIdentifier]
-        };
+        const updatedFormElement = updateObject(this.state.orderForm[inputIdentifier],{
+            value : event.target.value,
+            touched : true,
+            valid : checkValidity(event.target.value, this.state.orderForm[inputIdentifier].validation),
+        });
 
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.touched = true;
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        updatedOrderForm[inputIdentifier] = updatedFormElement;
+        const updatedOrderForm = updateObject(this.state.orderForm, {
+            [inputIdentifier] : updatedFormElement,
+        });
 
         let formIsValid = true;
 
@@ -135,28 +134,7 @@ class ContactData extends Component {
         }
 
         this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
-    }
-
-    checkValidity(value, rules) {
-        if (! rules) {
-            return true;
-        }
-
-        let isValid = true;
-        if (rules.required) {
-            isValid = value.trim() !== '';
-        }
-
-        if (rules.minLength) {
-            isValid = value.trim().length >= rules.minLength;
-        }
-
-        if (rules.maxLength) {
-            isValid = value.trim().length <= rules.maxLength;
-        }
-
-        return isValid;
-    }
+    };
 
     render() {
         let formElements = [];

@@ -9,6 +9,7 @@ import classes from './Auth.module.css';
 import * as actions from '../../store/actions/index';
 import {connect} from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import {checkValidity, updateObject} from "../../shared/utility";
 
 class Auth extends Component {
     state = {
@@ -52,46 +53,16 @@ class Auth extends Component {
     }
 
     inputChangedHandler = (event, controlName) => {
-        const updatedControls = {
-            ...this.state.controls
-        };
-
-        const updatedFormElement = {
-            ...updatedControls[controlName]
-        };
-
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.touched = true;
-        updatedFormElement.valid = Auth.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        updatedControls[controlName] = updatedFormElement;
+        const updatedControls = updateObject(this.state.controls, {
+            [controlName]: updateObject(this.state.controls[controlName], {
+                value : event.target.value,
+                touched : true,
+                valid : checkValidity(event.target.value, this.state.controls[controlName].validation),
+            })
+        });
 
         this.setState({controls: updatedControls});
     };
-
-    static checkValidity(value, rules) {
-        if (! rules) {
-            return true;
-        }
-
-        let isValid = true;
-        if (rules.required && isValid) {
-            isValid = value.trim() !== '';
-        }
-
-        if (rules.minLength && isValid) {
-            isValid = value.trim().length >= rules.minLength;
-        }
-
-        if (rules.maxLength && isValid) {
-            isValid = value.trim().length <= rules.maxLength;
-        }
-
-        if (rules.isEmail && isValid) {
-            isValid = /\S+@\S+\.\S+/.test(value);
-        }
-
-        return isValid;
-    }
 
     submitHandler = event => {
         event.preventDefault();
