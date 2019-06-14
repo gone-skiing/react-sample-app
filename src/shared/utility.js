@@ -1,32 +1,31 @@
 export const updateObject = (oldObject, updatedProperties) => {
-    return {
-        ...oldObject,
-        ...updatedProperties
-    }
+  return {
+    ...oldObject,
+    ...updatedProperties
+  };
 };
 
-
 export const checkValidity = (value, rules) => {
-    if (! rules) {
-        return true;
-    }
+  if (!rules) {
+    return true;
+  }
 
-    let isValid = true;
-    if (rules.required && isValid) {
-        isValid = value.trim() !== '';
-    }
+  let isValid = true;
+  if (rules.required) {
+    isValid = value.trim() !== '';
+  }
 
-    if (rules.minLength && isValid) {
-        isValid = value.trim().length >= rules.minLength;
-    }
+  if (rules.minLength && isValid) {
+    isValid = value.trim().length >= rules.minLength;
+  }
 
-    if (rules.maxLength && isValid) {
-        isValid = value.trim().length <= rules.maxLength;
-    }
+  if (rules.maxLength && isValid) {
+    isValid = value.trim().length <= rules.maxLength;
+  }
 
-    if (rules.isEmail && isValid) {
-        isValid = /\S+@\S+\.\S+/.test(value);
-    }
+  if (rules.isEmail && isValid) {
+    isValid = /\S+@\S+\.\S+/.test(value);
+  }
 
-    return isValid;
-}
+  return isValid;
+};

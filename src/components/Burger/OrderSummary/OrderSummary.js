@@ -1,35 +1,37 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import Aux from '../../../hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
 
-class OrderSummary extends Component {
+const OrderSummary = props => {
+  const { ingredients, price, purchaseCanceled, purchaseContinued } = props;
 
-    // This could be a functional component, used real component for debugging.
+  const ingredientSummary = Object.keys(ingredients).map(key => {
+    return (
+      <li key={key}>
+        <span style={{ transform: 'capitalize' }}>{key}</span>:{' '}
+        {ingredients[key]}
+      </li>
+    );
+  });
 
-    render() {
-        const ingredientSummary = Object.keys(this.props.ingredients).map(key => {
-            return (
-                <li key={key}>
-                    <span style={{transform: 'capitalize'}}>{key}</span>: {this.props.ingredients[key]}
-                </li>
-            );
-        });
-
-        return (
-            <Aux>
-                <h3>Your order</h3>
-                <p>A delicious burger with the following ingredients:</p>
-                <ul>
-                    {ingredientSummary}
-                </ul>
-                <p><strong>Total Price: {this.props.price.toFixed(2)}</strong></p>
-                <p>Continue to checkout?</p>
-                <Button buttonType="Danger" clicked={this.props.purchaseCanceled}>CANCEL</Button>
-                <Button buttonType="Success" clicked={this.props.purchaseContinued}>CONTINUE</Button>
-            </Aux>
-        );
-    };
+  return (
+    <Aux>
+      <h3>Your order</h3>
+      <p>A delicious burger with the following ingredients:</p>
+      <ul>{ingredientSummary}</ul>
+      <p>
+        <strong>Total Price: {price.toFixed(2)}</strong>
+      </p>
+      <p>Continue to checkout?</p>
+      <Button buttonType="Danger" clicked={purchaseCanceled}>
+        CANCEL
+      </Button>
+      <Button buttonType="Success" clicked={purchaseContinued}>
+        CONTINUE
+      </Button>
+    </Aux>
+  );
 };
 
 export default OrderSummary;

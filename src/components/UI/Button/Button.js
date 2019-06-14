@@ -1,15 +1,18 @@
 import React from 'react';
-import classes from './Button.module.css'
+import classes from './Button.module.css';
 
-const Button = (props) => {
-    return (
-        <button
-            className={[classes.Button, classes[props.buttonType]].join(' ')}
-            onClick={props.clicked}
-            disabled={props.disabled}>
-                {props.children}
-        </button>
-    );
+const Button = props => {
+  const { buttonType, children, clicked, disabled } = props;
+  return (
+    <button
+      type="submit"
+      className={[classes.Button, classes[buttonType]].join(' ')}
+      onClick={clicked}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
 };
 
 export default Button;
