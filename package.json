@@ -40,6 +40,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.3.0",
@@ -51,6 +53,7 @@
     "husky": "^2.4.0",
     "lint-staged": "^8.2.0",
     "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.0"
+    "pretty-quick": "^1.11.0",
+    "react-test-renderer": "^16.8.6"
   }
 }
