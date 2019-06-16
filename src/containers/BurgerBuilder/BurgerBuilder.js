@@ -14,7 +14,7 @@ import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 
-export class BurgerBuilder extends Component {
+export class BurgerBuilderComponent extends Component {
   static canBePurchased(ingredients) {
     const sum = Object.keys(ingredients)
       .map(key => {
@@ -93,7 +93,7 @@ export class BurgerBuilder extends Component {
 
           <BuildControls
             price={price}
-            purchaseable={BurgerBuilder.canBePurchased(ingredients)}
+            purchaseable={BurgerBuilderComponent.canBePurchased(ingredients)}
             disabled={disabledInfo}
             ingredientAdded={onIngredientAdded}
             ingredientRemoved={onIngredientRemoved}
@@ -135,7 +135,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+// noinspection JSUnusedGlobalSymbols
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withErrorHandler(BurgerBuilder, axios));
+)(withErrorHandler(BurgerBuilderComponent, axios));
