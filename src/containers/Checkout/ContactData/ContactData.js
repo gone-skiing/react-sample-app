@@ -99,13 +99,13 @@ class ContactData extends Component {
   };
 
   orderHandler = event => {
-    const { orderForm, price, token, userId } = this.state;
-    const { ingredients, onOrderBurger } = this.props;
+    const { orderForm } = this.state;
+    const { ingredients, onOrderBurger, price, token, userId } = this.props;
 
     event.preventDefault();
 
     const formData = {};
-    Object.key(orderForm).forEach(formElementIdentifier => {
+    Object.keys(orderForm).forEach(formElementIdentifier => {
       formData[formElementIdentifier] = orderForm[formElementIdentifier].value;
     });
 
