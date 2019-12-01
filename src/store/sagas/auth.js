@@ -1,4 +1,4 @@
-import { call, delay, put } from 'redux-saga/effects';
+import {call, delay, put} from 'redux-saga/effects';
 import axios from 'axios';
 import * as actions from '../actions';
 
@@ -21,7 +21,7 @@ export function* authUserSaga(action) {
   const authData = {
     email: action.email,
     password: action.password,
-    returnSecureToken: true
+    returnSecureToken: true,
   };
 
   let method = 'signupNewUser';
@@ -36,7 +36,7 @@ export function* authUserSaga(action) {
     localStorage.setItem('userId', response.data.localId);
     localStorage.setItem('token', response.data.idToken);
     const expirationDate = new Date(
-      new Date().getTime() + response.data.expiresIn * 1000
+      new Date().getTime() + response.data.expiresIn * 1000,
     );
     localStorage.setItem('expirationDate', expirationDate.toString());
 
@@ -60,8 +60,8 @@ export function* authCheckStateSaga() {
       yield put(actions.authSuccess(token, userId));
       yield put(
         actions.checkAuthTimeout(
-          expirationDate.getTime() - new Date().getTime()
-        )
+          expirationDate.getTime() - new Date().getTime(),
+        ),
       );
     } else {
       yield put(actions.initiateLogout());

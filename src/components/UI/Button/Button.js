@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Button.module.css';
 
 const Button = props => {
-  const { buttonType, children, clicked, disabled } = props;
+  const {buttonType, children, clicked, disabled} = props;
   return (
     <button
       type="submit"

@@ -2,14 +2,14 @@ import React from 'react';
 import classes from './Order.module.css';
 
 const order = props => {
-  const { ingredients, price } = props;
+  const {ingredients, price} = props;
 
   const transformed = [];
 
   Object.keys(ingredients).forEach(ingredientName => {
     transformed.push({
       name: ingredientName,
-      amount: props.ingredients[ingredientName]
+      amount: props.ingredients[ingredientName],
     });
   });
 
@@ -21,7 +21,7 @@ const order = props => {
           display: 'inline-block',
           margin: '0 8px',
           border: '1px solid #ccc',
-          padding: '5px'
+          padding: '5px',
         }}
         key={ig.name}
       >

@@ -1,17 +1,17 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../../shared/utility';
+import {updateObject} from '../../shared/utility';
 
 const initialState = {
   ingredients: null,
   totalPrice: 4,
-  error: false
+  error: false,
 };
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
   cheese: 0.4,
   bacon: 0.3,
-  meat: 1.3
+  meat: 1.3,
 };
 
 const addRemoveIngredient = (state, ingredientName, increment) => {
@@ -20,7 +20,7 @@ const addRemoveIngredient = (state, ingredientName, increment) => {
     return state;
   }
 
-  const updatedIngredient = { [ingredientName]: newCount };
+  const updatedIngredient = {[ingredientName]: newCount};
   const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
 
   const priceChange = INGREDIENT_PRICES[ingredientName] * increment;
@@ -29,7 +29,7 @@ const addRemoveIngredient = (state, ingredientName, increment) => {
   const updatedState = {
     ingredients: updatedIngredients,
     totalPrice: newPrice,
-    building: true
+    building: true,
   };
 
   return updateObject(state, updatedState);
@@ -41,11 +41,11 @@ const setIngredients = (state, action) => {
       salad: action.ingredients.salad,
       bacon: action.ingredients.bacon,
       cheese: action.ingredients.cheese,
-      meat: action.ingredients.meat
+      meat: action.ingredients.meat,
     },
     totalPrice: 4,
     error: false,
-    building: false
+    building: false,
   });
 };
 
@@ -58,7 +58,7 @@ const burgerBuilder = (state = initialState, action) => {
     case actionTypes.SET_INGREDIENTS:
       return setIngredients(state, action);
     case actionTypes.FETCH_INGREDIENTS_FAILED:
-      return updateObject(state, { error: true });
+      return updateObject(state, {error: true});
     default:
       return state;
   }

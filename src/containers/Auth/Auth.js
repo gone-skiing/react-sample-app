@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Redirect} from 'react-router-dom';
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 
@@ -9,7 +9,7 @@ import classes from './Auth.module.css';
 
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { checkValidity, updateObject } from '../../shared/utility';
+import {checkValidity, updateObject} from '../../shared/utility';
 
 function Auth(props) {
   const {
@@ -19,7 +19,7 @@ function Auth(props) {
     isAuthenticated,
     loading,
     onAuth,
-    onSetAuthRedirectPath
+    onSetAuthRedirectPath,
   } = props;
 
   const [isSignup, setIsSignup] = useState(false);
@@ -28,30 +28,30 @@ function Auth(props) {
       elementType: 'input',
       elementConfig: {
         type: 'email',
-        placeholder: 'Your Email'
+        placeholder: 'Your Email',
       },
       value: '',
       validation: {
         required: true,
-        isEmail: true
+        isEmail: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     password: {
       elementType: 'input',
       elementConfig: {
         type: 'password',
-        placeholder: 'Password'
+        placeholder: 'Password',
       },
       value: '',
       validation: {
         required: true,
-        minLength: 6
+        minLength: 6,
       },
       valid: false,
-      touched: false
-    }
+      touched: false,
+    },
   });
 
   useEffect(() => {
@@ -67,9 +67,9 @@ function Auth(props) {
         touched: true,
         valid: checkValidity(
           event.target.value,
-          controls[controlName].validation
-        )
-      })
+          controls[controlName].validation,
+        ),
+      }),
     });
 
     setControls(updatedControls);
@@ -88,7 +88,7 @@ function Auth(props) {
   Object.keys(controls).forEach(key => {
     formElements.push({
       id: key,
-      config: controls[key]
+      config: controls[key],
     });
   });
 
@@ -142,7 +142,7 @@ const mapStateToProps = state => {
     error: state.auth.error,
     isAuthenticated: state.auth.token !== null,
     buildingBurger: state.burgerBuilder.building,
-    authRedirectPath: state.auth.authRedirectPath
+    authRedirectPath: state.auth.authRedirectPath,
   };
 };
 
@@ -150,12 +150,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onAuth: (email, password, isSignup) =>
       dispatch(actions.auth(email, password, isSignup)),
-    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/')),
   };
 };
 
 // noinspection JSUnusedGlobalSymbols
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

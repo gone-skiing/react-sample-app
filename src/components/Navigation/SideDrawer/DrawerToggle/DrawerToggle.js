@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './DrawerToggle.module.css';
 
 const drawerToggle = props => {
-  const { clicked } = props;
+  const {clicked} = props;
   return (
     <div
       role="link"

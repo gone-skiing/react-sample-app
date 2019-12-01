@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 
 export const authStart = () => {
   return {
-    type: actionTypes.AUTH_START
+    type: actionTypes.AUTH_START,
   };
 };
 
@@ -10,33 +10,33 @@ export const authSuccess = (idToken, userId) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     idToken,
-    userId
+    userId,
   };
 };
 
 export const authFail = error => {
   return {
     type: actionTypes.AUTH_FAIL,
-    error
+    error,
   };
 };
 
 export const initiateLogout = () => {
   return {
-    type: actionTypes.AUTH_INITIATE_LOGOUT
+    type: actionTypes.AUTH_INITIATE_LOGOUT,
   };
 };
 
 export const logoutSucceeded = () => {
   return {
-    type: actionTypes.AUTH_LOGOUT
+    type: actionTypes.AUTH_LOGOUT,
   };
 };
 
 export const checkAuthTimeout = expirationTime => {
   return {
     expirationTime,
-    type: actionTypes.AUTH_CHECK_TIMEOUT
+    type: actionTypes.AUTH_CHECK_TIMEOUT,
   };
 };
 
@@ -45,19 +45,19 @@ export const auth = (email, password, isSignup) => {
     type: actionTypes.AUTH_USER,
     email,
     password,
-    isSignup
+    isSignup,
   };
 };
 
 export const setAuthRedirectPath = path => {
   return {
     type: actionTypes.SET_AUTH_REDIRECT_PATH,
-    path
+    path,
   };
 };
 
 export const authCheckState = () => {
   return {
-    type: actionTypes.AUTH_CHECK_STATE
+    type: actionTypes.AUTH_CHECK_STATE,
   };
 };

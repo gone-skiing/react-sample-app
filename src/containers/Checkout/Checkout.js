@@ -1,12 +1,12 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {Route, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
 
 function Checkout(props) {
-  const { history, ingredients, match, purchased } = props;
+  const {history, ingredients, match, purchased} = props;
 
   const checkoutCancelledHandler = () => {
     history.goBack();
@@ -39,7 +39,7 @@ function Checkout(props) {
 const mapStateToProps = state => {
   return {
     ingredients: state.burgerBuilder.ingredients,
-    purchased: state.order.purchased
+    purchased: state.order.purchased,
   };
 };
 

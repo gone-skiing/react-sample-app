@@ -4,13 +4,12 @@ import Aux from '../../../hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
 
 const OrderSummary = props => {
-  const { ingredients, price, purchaseCanceled, purchaseContinued } = props;
+  const {ingredients, price, purchaseCanceled, purchaseContinued} = props;
 
   const ingredientSummary = Object.keys(ingredients).map(key => {
     return (
       <li key={key}>
-        <span style={{ transform: 'capitalize' }}>{key}</span>:{' '}
-        {ingredients[key]}
+        <span style={{transform: 'capitalize'}}>{key}</span>: {ingredients[key]}
       </li>
     );
   });

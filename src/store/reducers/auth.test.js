@@ -1,7 +1,7 @@
-import reducer, { initialState } from './auth';
+import reducer, {initialState} from './auth';
 
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../../shared/utility';
+import {updateObject} from '../../shared/utility';
 
 describe('auth reducer', () => {
   it('should return initial state', () => {
@@ -12,13 +12,13 @@ describe('auth reducer', () => {
       reducer(initialState, {
         type: actionTypes.AUTH_SUCCESS,
         idToken: 'some-token',
-        userId: 'some-userId'
-      })
+        userId: 'some-userId',
+      }),
     ).toEqual(
       updateObject(initialState, {
         token: 'some-token',
-        userId: 'some-userId'
-      })
+        userId: 'some-userId',
+      }),
     );
   });
 });

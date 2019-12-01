@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
 import Order from '../../components/Order/Order';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
@@ -8,8 +8,8 @@ import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 function Orders(props) {
-  const { onFetchOrders, token, userId } = props;
-  const { loading, orders } = props;
+  const {onFetchOrders, token, userId} = props;
+  const {loading, orders} = props;
 
   useEffect(() => {
     onFetchOrders(token, userId);
@@ -37,18 +37,18 @@ const mapStateToProps = state => {
     orders: state.order.orders,
     loading: state.order.loading,
     token: state.auth.token,
-    userId: state.auth.userId
+    userId: state.auth.userId,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     onFetchOrders: (token, userId) =>
-      dispatch(actions.fetchOrders(token, userId))
+      dispatch(actions.fetchOrders(token, userId)),
   };
 };
 
 // noinspection JSUnusedGlobalSymbols
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withErrorHandler(Orders, axios));

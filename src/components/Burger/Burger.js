@@ -5,7 +5,7 @@ import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 import classes from './Burger.module.css';
 
 const burger = props => {
-  const { ingredients } = props;
+  const {ingredients} = props;
   let key = 0;
 
   let transformed = Object.keys(ingredients)

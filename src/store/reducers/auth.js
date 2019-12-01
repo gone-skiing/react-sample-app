@@ -1,16 +1,16 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../../shared/utility';
+import {updateObject} from '../../shared/utility';
 
 export const initialState = {
   token: null,
   userId: null,
   error: null,
   loading: false,
-  authRedirectPath: '/'
+  authRedirectPath: '/',
 };
 
 const authStart = state => {
-  return updateObject(state, { error: null, loading: true });
+  return updateObject(state, {error: null, loading: true});
 };
 
 const authSuccess = (state, action) => {
@@ -18,7 +18,7 @@ const authSuccess = (state, action) => {
     token: action.idToken,
     userId: action.userId,
     error: null,
-    loading: false
+    loading: false,
   });
 };
 
@@ -27,7 +27,7 @@ const authFail = (state, action) => {
     token: null,
     userId: action.userId,
     error: action.error,
-    loading: false
+    loading: false,
   });
 };
 
@@ -35,13 +35,13 @@ const authLogout = state => {
   return updateObject(state, {
     token: null,
     userId: null,
-    loading: false
+    loading: false,
   });
 };
 
 const setAuthRedirectPath = (state, action) => {
   return updateObject(state, {
-    authRedirectPath: action.path
+    authRedirectPath: action.path,
   });
 };
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -9,10 +9,10 @@ import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
-import { checkValidity, updateObject } from '../../../shared/utility';
+import {checkValidity, updateObject} from '../../../shared/utility';
 
 function ContactData(props) {
-  const { ingredients, loading, onOrderBurger, price, token, userId } = props;
+  const {ingredients, loading, onOrderBurger, price, token, userId} = props;
 
   const [formIsValid, setFormIsValid] = useState(false);
   const [orderForm, setOrderForm] = useState({
@@ -20,82 +20,82 @@ function ContactData(props) {
       elementType: 'input',
       elementConfig: {
         type: 'text',
-        placeholder: 'Your Name'
+        placeholder: 'Your Name',
       },
       value: '',
       validation: {
-        required: true
+        required: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     street: {
       elementType: 'input',
       elementConfig: {
         type: 'text',
-        placeholder: 'Street'
+        placeholder: 'Street',
       },
       value: '',
       validation: {
-        required: true
+        required: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     zipCode: {
       elementType: 'input',
       elementConfig: {
         type: 'text',
-        placeholder: 'Zip'
+        placeholder: 'Zip',
       },
       value: '',
       validation: {
         required: true,
         minLength: 5,
-        maxLength: 5
+        maxLength: 5,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     country: {
       elementType: 'input',
       elementConfig: {
         type: 'text',
-        placeholder: 'Country'
+        placeholder: 'Country',
       },
       value: '',
       validation: {
-        required: true
+        required: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     email: {
       elementType: 'input',
       elementConfig: {
         type: 'email',
-        placeholder: 'Your Email'
+        placeholder: 'Your Email',
       },
       value: '',
       validation: {
-        required: true
+        required: true,
       },
       valid: false,
-      touched: false
+      touched: false,
     },
     deliveryMethod: {
       elementType: 'select',
       elementConfig: {
         options: [
-          { value: 'fastest', displayValue: 'Fastest' },
-          { value: 'cheapest', displayValue: 'Cheapest' }
-        ]
+          {value: 'fastest', displayValue: 'Fastest'},
+          {value: 'cheapest', displayValue: 'Cheapest'},
+        ],
       },
       value: 'fastest',
       validation: {},
       valid: false,
-      touched: false
-    }
+      touched: false,
+    },
   });
 
   const orderHandler = event => {
@@ -110,7 +110,7 @@ function ContactData(props) {
       ingredients,
       price,
       orderData: formData,
-      userId
+      userId,
     };
 
     onOrderBurger(order, token);
@@ -122,12 +122,12 @@ function ContactData(props) {
       touched: true,
       valid: checkValidity(
         event.target.value,
-        orderForm[inputIdentifier].validation
-      )
+        orderForm[inputIdentifier].validation,
+      ),
     });
 
     const updatedOrderForm = updateObject(orderForm, {
-      [inputIdentifier]: updatedFormElement
+      [inputIdentifier]: updatedFormElement,
     });
 
     let isValid = true;
@@ -144,7 +144,7 @@ function ContactData(props) {
   Object.keys(orderForm).forEach(key => {
     formElements.push({
       id: key,
-      config: orderForm[key]
+      config: orderForm[key],
     });
   });
 
@@ -186,18 +186,18 @@ const mapStateToProps = state => {
     price: state.burgerBuilder.totalPrice,
     loading: state.order.loading,
     token: state.auth.token,
-    userId: state.auth.userId
+    userId: state.auth.userId,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onOrderBurger: (orderData, token) =>
-      dispatch(actions.purchaseBurger(orderData, token))
+      dispatch(actions.purchaseBurger(orderData, token)),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withErrorHandler(ContactData, axios));

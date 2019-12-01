@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
 
 import Aux from '../../hoc/Aux/Aux';
 import Burger from '../../components/Burger/Burger';
@@ -35,7 +35,7 @@ function BurgerBuilderComponent(props) {
     onInitIngredients,
     onInitPurchase,
     onSetAuthRedirectPath,
-    price
+    price,
   } = props;
 
   const [purchasing, setPurchasing] = useState(false);
@@ -63,7 +63,7 @@ function BurgerBuilderComponent(props) {
   };
 
   const disabledInfo = {
-    ...ingredients
+    ...ingredients,
   };
 
   Object.keys(disabledInfo).forEach(key => {
@@ -116,7 +116,7 @@ const mapStateToProps = state => {
     ingredients: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
     error: state.burgerBuilder.error,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
   };
 };
 
@@ -126,11 +126,11 @@ const mapDispatchToProps = dispatch => {
     onIngredientRemoved: ingName => dispatch(actions.removeIngredient(ingName)),
     onInitIngredients: () => dispatch(actions.initIngredients()),
     onInitPurchase: () => dispatch(actions.purchaseInit()),
-    onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path))
+    onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path)),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withErrorHandler(BurgerBuilderComponent, axios));

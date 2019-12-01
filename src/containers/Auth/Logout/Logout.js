@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
-import { initiateLogout } from '../../../store/actions/index';
+import {initiateLogout} from '../../../store/actions/index';
 
 function Logout(props) {
-  const { onLogout } = props;
+  const {onLogout} = props;
   useEffect(() => {
     onLogout();
   }, [onLogout]);
@@ -15,11 +15,8 @@ function Logout(props) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogout: () => dispatch(initiateLogout())
+    onLogout: () => dispatch(initiateLogout()),
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Logout);
+export default connect(null, mapDispatchToProps)(Logout);
