@@ -50,7 +50,7 @@
   "devDependencies": {
     "@gone-skiing/eslint-config": "0.2.7",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-adapter-react-16": "^1.15.5",
     "lint-staged": "^9.5.0",
     "pretty-quick": "^2.0.1",
     "react-test-renderer": "^16.12.0"
